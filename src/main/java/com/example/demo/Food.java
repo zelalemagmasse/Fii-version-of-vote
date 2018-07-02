@@ -1,0 +1,75 @@
+package com.example.demo;
+
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+public class Food {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    private String imageurl;
+    private String descrition;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
+    }
+
+    public String getDescrition() {
+        return descrition;
+    }
+
+    public void setDescrition(String descrition) {
+        this.descrition = descrition;
+    }
+
+    public String getLast5minutes() {
+        return last5minutes;
+    }
+
+    public void setLast5minutes(String last5minutes) {
+        this.last5minutes = last5minutes;
+    }
+
+    public Set<Tasty> getTastyVotes() {
+        return tastyVotes;
+    }
+
+    public void setTastyVotes(Set<Tasty> tastyVotes) {
+        this.tastyVotes = tastyVotes;
+    }
+
+    public Set<Nasty> getNastyVotes() {
+        return nastyVotes;
+    }
+
+    public void setNastyVotes(Set<Nasty> nastyVotes) {
+        this.nastyVotes = nastyVotes;
+    }
+
+    @Transient
+
+    private String last5minutes;
+
+    @OneToMany(mappedBy = "theDish")
+    private Set<Tasty> tastyVotes;
+
+    @OneToMany(mappedBy = "theDish")
+    private  Set<Nasty> nastyVotes;
+
+
+
+}
